@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 data class DetailUiState(
     val detailUiEvent: MahasiswaEvent = MahasiswaEvent(),
@@ -79,5 +80,11 @@ class DetailMhsViewModel (
             ),
         )
 
-
+    fun deleteMhs() {
+        detailUiState.value.detailUiEvent.toMahasiswaEntity().let {
+            viewModelScope.launch {
+                repositoryMhs.deleteMhs(it)
+            }
+        }
+    }
 }
