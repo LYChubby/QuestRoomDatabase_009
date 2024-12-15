@@ -19,5 +19,8 @@ interface MahasiswaDao {
     @Delete
     suspend fun deleteMahasiswa(mahasiswa: Mahasiswa)
 
+    @Query("SELECT * FROM mahasiswa ORDER BY nama ASC")
+    fun getAllMahasiswa(): Flow<List<Mahasiswa>>
+
 
 }
