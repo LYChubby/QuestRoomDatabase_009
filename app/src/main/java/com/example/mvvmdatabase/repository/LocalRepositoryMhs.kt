@@ -2,6 +2,7 @@ package com.example.mvvmdatabase.repository
 
 import com.example.mvvmdatabase.data.dao.MahasiswaDao
 import com.example.mvvmdatabase.data.entity.Mahasiswa
+import kotlinx.coroutines.flow.Flow
 
 class LocalRepositoryMhs (
     private val mahasiswaDao: MahasiswaDao
@@ -16,5 +17,12 @@ class LocalRepositoryMhs (
         mahasiswaDao.deleteMahasiswa(mahasiswa)
     }
 
+    override fun getAllMhs(): Flow<List<Mahasiswa>> {
+        return mahasiswaDao.getAllMahasiswa()
+    }
+
+    override fun getMhs(nim: String): Flow<Mahasiswa?> {
+        return mahasiswaDao.getMahasiswaByNim(nim)
+    }
 
 }
