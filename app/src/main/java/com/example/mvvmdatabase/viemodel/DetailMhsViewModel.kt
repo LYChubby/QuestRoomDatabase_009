@@ -33,7 +33,7 @@ data class DetailUiState(
 
 // Memindahkan Data Dari Entity Ke UI
 
-fun Mahasiswa.toDetailUiState(): MahasiswaEvent {
+fun Mahasiswa.toDetailUiEvent(): MahasiswaEvent {
     return MahasiswaEvent(
         nim = nim,
         nama = nama,
@@ -55,7 +55,7 @@ class DetailMhsViewModel (
         .filterNotNull()
         .map {
             DetailUiState(
-                detailUiEvent = it.toDetailUiState(),
+                detailUiEvent = it.toDetailUiEvent(),
                 isLoadings = false,
             )
         }
